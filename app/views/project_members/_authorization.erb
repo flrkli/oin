@@ -1,0 +1,30 @@
+<% html_options = "" %>
+<% if !show %>
+  <% html_options = " style=\"display: none;\"" %>
+<% end %>
+<% if project_members.empty? %>
+  <div id=<%= id %> <%= html_options %>>
+    <div class="content">
+      Es liegen zur Zeit keine Authorisierungsanfragen vor.
+    </div>
+  </div>
+<% else %>
+  <table id=<%= id %> class="embedded_table"<%= html_options %>>
+    <tr>
+      <th>Benutzer</th>
+      <th>Projekt</th>
+      <th></th>
+    </tr>
+    <% project_members.each do |project_member| %>
+      <tr>
+        <td style="vertical-align: middle;"><%= project_member.user.login %></td>
+        <td style="vertical-align: middle;"><%= project_member.project.title %></td>
+        <td>
+          <% if project_member.user != current_user %>
+            <% form_for project_member, :url => workspace_project_member_path(project_member) do |form| %><%= submit_tag "Authorisieren" %><% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

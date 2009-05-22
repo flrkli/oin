@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  
+
+
+
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-style-type" content="text/css" />
+    <title>OpenInnovationNet - <%= @path.first.title %></title>
+    <%= stylesheet_link_tag :all %>
+    <%= javascript_include_tag :defaults %>
+  </head>
+  
+  <body>
+      
+    <div id="header">
+      
+      <div id="search">
+        <div class="top">
+          <div class="top_left">
+            <div class="top_right">
+              <div class="bottom_left">
+                <div class="bottom_right">
+                  <div style="padding: 10px;">
+                    Suche
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="login">
+        <div class="top">
+          <div class="top_left">
+            <div class="top_right">
+              <div class="bottom_left">
+                <div class="bottom_right">
+                  <div style="padding: 10px;">
+                    <% if logged_in? %>
+                    	Willkommen <%= current_user.login %>. Zum <%= link_to "Profil", users_path %><br />
+                    	<%= link_to "Logout", logout_path %>
+                    <% else %>
+                    	<%= link_to "Login" login_path %>
+                    <% end %>                   	
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="logo">
+      	<%= image_tag "application/header/logo.jpg" %>
+      </div>
+      
+      <div style="clear: both;">
+      </div>
+      
+    </div>
+    
+    <%= render :partial => "layouts/navigation", :locals => {:navigation => "navigation", :links => @navigation} %>
+    
+    <%= render :partial => "layouts/navigation", :locals => {:navigation => "subnavigation", :links => @subnavigation} %>
+    
+    <div id="content">
+      <div class="top">
+        <div class="top_left">
+          <div class="top_right">
+            <div style="padding: 10px; margin-bottom: 40px;">
+              <div style="margin-bottom: 40px;">
+                Sie sind hier: 
+                <% @path.each do |link| %>
+                  <%= link_to link.title, link.url %>
+                  <% if link != @path.last %>
+                      &raquo; 
+                  <% end %>
+                <% end %>
+              </div>
+              
+              <% if flash[:notice] != nil %>
+       	   			<div class="border" style="margin-bottom: 40px;">
+        	    		<div class="shading" style="padding: 10px;">
+        	     			<%= flash[:notice] %>
+       	     			</div>
+       	   			</div>
+       	 			<% end %>
+              
+              <%= yield %>
+            </div>
+            <div id="footer">
+              Copyright 2009 by OpenInnovationNet
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </body>
+  
+</html>

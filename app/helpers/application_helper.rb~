@@ -1,0 +1,49 @@
+# Methods added to this helper will be available to all templates in the application.
+module ApplicationHelper
+
+	# LINKS
+
+	# USER AREA
+
+	def link_to_index(user)
+		Link.new(user, users_path, {}, "index")
+	end
+
+	def active_link_to_index(user)
+		Link.new(user, users_path, {}, nil)
+	end
+
+	def link_to_edit
+		Link.new("Profil editieren", edit_user_user_detail_path(:user_id => current_user.id), {}, "edit")
+	end
+
+	def active_link_to_edit
+		Link.new("Profil editieren", edit_user_user_detail_path(:user_id => current_user.id), {}, nil)
+	end
+
+	def link_to_profile
+		Link.new("Profil anzeigen", user_user_detail_path(:user_id => current_user.id), {}, "profile")		
+	end
+
+	def active_link_to_profile
+		Link.new("Profil anzeigen", user_user_detail_path(:user_id => current_user.id), {}, nil)		
+	end
+
+
+	def link_to_new
+		Link.new("Registrieren", signup_path, {}, "signup")
+	end
+
+	def active_link_to_new
+		Link.new("Registrieren", signup_path, {}, nil)
+	end
+
+	def link_to_message
+		Link.new("Messages", messages_path, {}, "message")
+	end
+
+	def active_link_to_message
+		Link.new("Messages", messages_path, {}, nil)
+	end
+	
+end

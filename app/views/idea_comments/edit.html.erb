@@ -1,0 +1,12 @@
+<h1>Editing idea_comment</h1>
+
+<% form_for(@idea_comment) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @idea_comment %> |
+<%= link_to 'Back', idea_comments_path %>

@@ -1,0 +1,55 @@
+<div class="border" style="margin: 0px;">
+  
+  <div class="header">
+    <h2>Kalender</h2>
+  </div>
+  
+  <div class="content">
+    <h3 style="text-align: center;"><%= link_to_remote "&laquo;", :url => {:controller => "calendar", :action => "update", :active_day => active_day.last_month} %> <%= active_day.strftime("%B") %> <%= link_to_remote "&raquo;", :url => {:controller => "calendar", :action => "update", :active_day => active_day.next_month} %> <%= link_to_remote "&laquo;", :url => {:controller => "calendar", :action => "update", :active_day => active_day.last_year} %> <%= active_day.strftime("%Y") %> <%= link_to_remote "&raquo;", :url => {:controller => "calendar", :action => "update", :active_day => active_day.next_year} %></h3>
+  </div>
+  
+  <table class="calendar">
+    
+    <tr>
+      <th>Mo</th>
+      <th>Di</th>
+      <th>Mi</th>
+      <th>Do</th>
+      <th>Fr</th>
+      <th>Sa</th>
+      <th>So</th>
+    </tr>
+    
+    <% cell_id = 0 %>
+    <% day = -(active_day.beginning_of_month.wday-1)%7+1 %>
+    <% while day < active_day.end_of_month.day %>
+      <tr>
+        <% 7.times do %>
+          <% day = cell_id-(active_day.beginning_of_month.wday-1)%7+1 %>
+          <% html_options = {} %>
+          <% if day > 0 && day <= active_day.end_of_month.day %>
+            <% if day == active_day.day %>
+              <% html_options = {:class => "active_day"} %>
+            <% elsif active_day.year == Time.now.year && active_day.month == Time.now.month && day == Time.now.day %>
+              <% html_options = {:class => "today"} %>
+            <% elsif cell_id%7 == 5 || cell_id%7 == 6 %>
+              <% html_options = {:class => "weekend"} %>
+            <% end %>
+            <td><%= link_to_remote day, {:url => {:controller => "calendar", :action => :update, :active_day => active_day.strftime("%Y-%m-")+day.to_s}}, html_options %></td>
+          <% else %>
+            <td></td>
+          <% end %>
+          <% cell_id += 1 %>
+        <% end %>
+      </tr>
+    <% end %>
+    
+  </table>
+  
+  <% if render_cancel_button %>
+    <div class="footer" style="margin-top: 1px; text-align: right;">
+      <%= button_to_function "Abbruch", update_page {|page| page.hide calendar_id} %>
+    </div>
+  <% end %>
+  
+</div>

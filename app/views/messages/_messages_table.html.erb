@@ -1,0 +1,28 @@
+<div class="border">
+  <table class="shading">
+		<tr>
+			<th>
+				<%= @first %>
+			</th>
+			<th>Titel</th>
+			<th>Zeit</th>
+			<th>&nbsp</th>
+			<th>&nbsp</th>
+		</tr>
+		<% @messages.each do |m| %>		
+		<tr>
+			<td><% if m.mailbox == "inbox" %>
+					<%= User.find_by_id(m.message.sender_id).login %>
+					<% else %>
+					<%= User.find_by_id(Mail.find_by_message_id_and_mailbox(m.message_id, "inbox").user_id).login %>
+					<% end %>
+			</td>
+			<td><%= link_to m.message.subject, message_path(m.message.id) %></td>
+			<td><%= m.message.created_at.strftime("%a, %d. %B %m, %H:%M") %></td>
+			<td><%= link_to "antworten", {:action => "new", :reply => m.id} unless @type == "trash" || @type == "sentbox"%></td>
+			<td><%= link_to "löschen", message_path(m.id), :method => :delete unless @type == "trash" %></td>
+		</tr>
+		<% end %>
+		
+	</table>
+</div>

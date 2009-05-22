@@ -1,0 +1,10 @@
+#search, #login {
+  width: 180px;
+  margin-top: 10px;
+  margin-right: 10px;
+  background-color: #FFFFFF;
+  float: right;
+}
+#login {
+  clear: both;
+}

@@ -1,0 +1,32 @@
+<div class="border">
+  <div class="header">
+    Pinnwand
+  </div>
+  <% if @bulletin_board_messages.empty? %>
+    <div class="content">
+      Ihre Pinnwand ist momentan leer.
+    </div>
+  <% else %>
+    <table>
+      <% @bulletin_board_messages.each do |bulletin_board_message| %>
+        <% if bulletin_board_message != @bulletin_board_messages.first %>
+          <tr>
+            <td colspan="3" style="padding: 0px; border-top-style: dotted; border-width: 1px; border-color: #EEEEEE;"></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td rowspan="2"><%= h bulletin_board_message.user.login %></td>
+          <td><h3><%= h bulletin_board_message.title %></h3></td>
+          <td style="text-align: right;">
+            <% if bulletin_board_message.user == current_user %>
+              <%= link_to "Bearbeiten", edit_workspace_project_bulletin_board_message_path(@project, bulletin_board_message) %> | <%= link_to "Löschen", workspace_project_bulletin_board_message_path(@project, bulletin_board_message), :confirm => "Sind sie sicher, dass sie #{bulletin_board_message.title} löschen wollen?", :method => :delete %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="padding-top: 0px;"><%= h bulletin_board_message.message %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>

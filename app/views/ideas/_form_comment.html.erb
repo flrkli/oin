@@ -1,0 +1,31 @@
+<% form_for (@idea_comment) do |f| %>
+  
+	<%= f.text_area :comment, :size => "25x6", :class => "mceEditor" %><br />
+	<%= f.error_message_on :comment %>	
+	<br />
+	<b>Rating (0-5 Sterne)</b><br />
+	<table>
+		<tr>
+			<td></td>
+			<td>*</td>
+			<td>**</td>
+			<td>***</td>
+			<td>****</td>
+			<td>*****</td>
+		</tr>
+		<tr>
+			<td><%= f.radio_button :rating, 0 %></td>
+			<td><%= f.radio_button :rating, 1 %></td>
+			<td><%= f.radio_button :rating, 2 %></td>
+			<td><%= f.radio_button :rating, 3 %></td>
+			<td><%= f.radio_button :rating, 4 %></td>
+			<td><%= f.radio_button :rating, 5 %></td>
+		</tr>
+	</table>
+		
+	<%= f.error_message_on :rating %>
+	<%= f.hidden_field :idea_id %>
+	<p>
+    <%= f.submit "Neuer Kommentar" %>
+  </p>
+<% end %>

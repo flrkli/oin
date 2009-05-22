@@ -1,0 +1,18 @@
+<%= render :partial =>"navigation" %>
+
+<div class="border">
+  <div class="shading">
+  	<%= @message.subject %>
+  </div>
+</div>
+<br />
+von: <%= @sender %>
+
+<br />
+<br />
+
+<div class="border">
+  <div class="shading">
+    <%= @message.body %>
+  </div>
+</div>

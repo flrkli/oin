@@ -1,0 +1,112 @@
+class MessagesController < ApplicationController
+  
+	before_filter :login_required	
+
+	def index
+		@user = current_user	
+		
+		@path = [link_to_index(@user.login), link_to_messages]
+		@subnavigation = [link_to_index(@user.login), link_to_edit, link_to_profile, active_link_to_messages]
+  end
+
+
+
+  def show
+		@user = current_user	
+
+		@message = Message.find_by_id(params[:id])
+		@sender = User.find_by_id(@message.sender_id).login
+
+		# test if an user is authorized to read a mail
+
+		if Mail.find_by_user_id_and_message_id(current_user.id, @message.id) == nil && !admin_authorized? 
+	
+			flash[:notice] = "Keine Befugnis diese Nachricht anzuschauen"
+			redirect_to messages_path
+		end
+
+		Mail.find_by_message_id_and_user_id(@message.id, current_user.id).mark_as_read
+		
+		@path = [link_to_index(@user.login), link_to_messages]
+		@subnavigation = [link_to_index(@user.login), link_to_edit, link_to_profile, active_link_to_messages]  
+  end
+
+
+
+
+  def new
+		@user = current_user
+
+		@message = Message.new
+
+		@reply = params[:reply]	
+
+		if @reply != nil
+			@recipient = Mail.find_by_id(@reply).message.sender_id
+		end
+		
+		@path = [link_to_index(@user.login), link_to_messages, link_to_new_message]
+		@subnavigation = [link_to_index(@user.login), link_to_edit, link_to_profile, active_link_to_messages]
+  end
+
+
+
+
+	def create
+		@user = current_user		
+		@message = Message.new(params[:message])
+		@recipient = User.find_by_login(params[:recipient])
+
+		# reply (is nil, if there is no conversation)
+		@reply = params[:reply]
+		
+		@path = [link_to_index(@user.login), link_to_messages, link_to_new_message]
+		@subnavigation = [link_to_index(@user.login), link_to_edit, link_to_profile, active_link_to_messages]
+
+		# this is important:
+
+			if @reply != ""
+				@user.reply_to_sender(Mail.find_by_id(@reply), @message.body, @message.subject)
+				flash[:notice] = "Nachricht erfolgreich verschickt."				
+				redirect_to messages_path
+			else
+				if @recipient != nil && @recipient != current_user 
+					@user.send_message(@recipient, @message.body, @message.subject)
+					flash[:notice] = "Nachricht erfolgreich verschickt."				
+					redirect_to messages_path
+				else
+					flash[:notice] = "Es ist ein Fehler beim Versenden aufgetreten"
+					@recipient = nil
+					render :action => "new"
+				end
+			end
+
+	end
+
+  def box
+		@user = current_user	
+		@type = params[:type]
+
+		@messages = @user.mailbox[@type].mail
+
+		case @type			
+			when "inbox" 
+				@first = "Absender"
+			when "sentbox" 
+				@first = "Empfänger"
+			else 
+				@first = "Absender/Empfänger"
+		end
+		
+		@path = [link_to_index(@user.login), link_to_messages, link_to_box(@type)]
+		@subnavigation = [link_to_index(@user.login), link_to_edit, link_to_profile, active_link_to_messages]
+  end
+
+	def destroy
+		@conversation = Mail.find_by_id(params[:id])
+		
+		current_user.mailbox.move_to(:trash, :conversation => @conversation)
+		redirect_to :back
+	end
+
+end

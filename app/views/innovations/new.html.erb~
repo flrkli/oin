@@ -1,0 +1,35 @@
+<h1>New innovation</h1>
+
+<% form_for(@innovation) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </p>
+  <p>
+    <%= f.label :category_id %><br />
+    <%= f.text_field :category_id %>
+  </p>
+  <p>
+    <%= f.label :innovation_type %><br />
+    <%= f.text_field :innovation_type %>
+  </p>
+  <p>
+    <%= f.label :views %><br />
+    <%= f.text_field :views %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', innovations_path %>

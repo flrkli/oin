@@ -1,0 +1,9 @@
+<% if @uploads != nil %>
+<% @uploads.each do |upload| %>
+  <%= link_to upload.filename, upload.public_filename %>
+		<% if @delete %>
+		&nbsp&nbsp<%= link_to "löschen", upload_path(upload.id), :method => :delete, :confirm => "Sind sie sicher?"%>
+		<% end %>
+		<br />
+<% end -%>
+<% end %>

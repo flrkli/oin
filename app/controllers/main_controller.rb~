@@ -1,0 +1,12 @@
+class MainController < ApplicationController
+	
+	def link_to_index
+		Link.new("Home", {:controller => "main", :action => "index"}, {}, "main")	
+	end  
+
+	def index
+		@path = [link_to_index]
+    @subnavigation = []
+  end
+
+end

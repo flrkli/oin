@@ -1,0 +1,2 @@
+<%= render :partial =>"navigation" %>
+<%= render :partial => "messages_table" %>

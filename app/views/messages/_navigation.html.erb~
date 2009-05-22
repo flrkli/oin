@@ -1,0 +1,8 @@
+<%= link_to "Nachricht schreiben", new_message_path %>&nbsp | &nbsp
+<%= link_to "Inbox", {:action => "box", :type => :inbox} %>&nbsp | &nbsp
+<%= link_to "Gesendet", messages_path %>&nbsp | &nbsp
+<%= link_to "Müll", messages_path %>
+
+<br />
+<br />
+<br />

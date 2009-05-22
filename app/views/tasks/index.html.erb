@@ -1,0 +1,63 @@
+<div>
+  <div id="calendar" style="float: left;">
+    <%= render :partial => "calendar/calendar", :locals => {:active_day => Time.now.to_date, :render_cancel_button => false} %>
+  </div>
+  <div class="border" style="margin-left: 300px;">
+    <% if @project %>
+      <% form_remote_tag :url => {:controller => "tasks", :action => "update_tasks"} do %>
+        <table>
+          <tr>
+            <th style="vertical-align: middle;">Aufgaben</th>
+            <th style="text-align: right;"><%= collection_select :task_type, :id, [ApplicationController::SelectOption.new("Alle Aufgaben", 1), ApplicationController::SelectOption.new("Persönliche Aufgaben", 2), ApplicationController::SelectOption.new("Öffentliche Aufgaben", 3)], :id, :title %><%= submit_tag "Go" %></th>
+          </tr>
+        </table>
+      <% end %>
+    <% else %>
+      <div class="header">
+        Persönliche Aufgaben
+      </div>
+    <% end %>
+    <% if @tasks.empty? %>
+      <% if @project %>
+        <div class="content">
+          In diesem Projekt liegen zur Zeit keine Aufgaben vor.
+        </div>
+      <% else %>
+        <div class="content">
+          Es liegen zur Zeit keine persönlichen Aufgaben vor.
+        </div>
+      <% end %>
+    <% else %>
+      <table class="embedded_table">
+        <tr>
+          <th>Datum</th>
+          <th>Titel</th>
+          <th></th>
+        </tr>
+        <% @tasks.each do |task| %>
+          <tr>
+            <td colspan="3" style="padding: 0px; border-bottom-style: dotted; border-width: 1px; border-color: #CCCCCC;"></td>
+          </tr>
+          <tr>
+            <td><%= h string_from_time(task.begins_at.to_date) %></td>
+            <td><%= h task.title %></td>
+            <td style="text-align: right;">
+              <% if task.user == current_user %>
+                <% if @project %>
+                  <%= link_to "Bearbeiten", edit_workspace_project_task_path(@project, task) %> | <%= link_to "Löschen", workspace_project_task_path(@project, task), :confirm => "Sind sie sicher, dass sie #{task.title} löschen wollen?", :method => :delete %>
+                <% else %>
+                  <%= link_to "Bearbeiten", edit_workspace_task_path(task) %> | <%= link_to "Löschen", workspace_task_path(task), :confirm => "Sind sie sicher, dass sie #{task.title} löschen wollen?", :method => :delete %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td id="task_<%= h task.id %>_description" style="padding-top: 0px;" colspan="3"><%= h task.description %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+  <div style="clear: both;">
+  </div>
+</div>

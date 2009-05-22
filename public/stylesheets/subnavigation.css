@@ -1,0 +1,191 @@
+#subnavigation {
+  clear: both;
+  width: 180px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  float: left;
+}
+
+
+
+
+#subnavigation * {
+  color: #333333;
+}
+
+
+
+
+#subnavigation .link {
+  padding: 2px;
+}
+
+
+
+
+#subnavigation div.link:hover .bottom {
+  background-color: #FFFFFF;
+  background-image: url(/images/application/navigation/bottom.png);
+}
+#subnavigation .link .top {
+  background-color: transparent;
+  background-image: none;
+}
+#subnavigation div.link:hover .top {
+  background-image: url(/images/application/navigation/top.png);
+}
+#subnavigation div.link:hover .left {
+  background-image: url(/images/application/navigation/left.png);
+}
+#subnavigation div.link:hover .right {
+  background-image: url(/images/application/navigation/right.png);
+}
+#subnavigation div.first.in_group:hover .right {
+  background-image: none;
+}
+#subnavigation .link .top_left {
+  background-image: none;
+}
+#subnavigation div.link:hover .top_left {
+  background-image: url(/images/application/navigation/top_left.png);
+}
+#subnavigation div.first:hover .top_left {
+  background-image: url(/images/application/navigation/first/top_left.png);
+}
+#subnavigation .link .top_right {
+  background-image: none;
+}
+#subnavigation div.link:hover .top_right {
+  background-image: url(/images/application/navigation/top_right.png);
+}
+#subnavigation div.first:hover .top_right {
+  background-image: url(/images/application/navigation/first/top_right.png);
+}
+#subnavigation div.first.in_group:hover .top_right {
+  background-image: none;
+}
+#subnavigation .link .bottom_left {
+  background-image: none;
+}
+#subnavigation div.link:hover .bottom_left {
+  background-image: url(/images/application/navigation/bottom_left.png);
+}
+#subnavigation .link .bottom_right {
+  background-image: none;
+}
+#subnavigation div.link:hover .bottom_right {
+  background-image: url(/images/application/navigation/bottom_right.png);
+}
+#subnavigation div.first.in_group:hover .bottom_right {
+  background-image: none;
+}
+
+
+
+
+#subnavigation div.first.in_group:hover .in_group .bottom {
+  background-color: transparent;
+  background-image: none;
+}
+#subnavigation .first.in_group div.in_group:hover .bottom {
+  background-image: url(/images/application/navigation/bottom.png);
+}
+#subnavigation div.first.in_group:hover .in_group .top {
+  background-image: none;
+}
+#subnavigation .first.in_group div.in_group:hover .top {
+  background-image: url(/images/application/navigation/top.png);
+}
+#subnavigation div.first.in_group:hover .in_group .left {
+  background-image: none;
+}
+#subnavigation .first.in_group div.in_group:hover .left {
+  background-image: url(/images/application/navigation/left.png);
+}
+#subnavigation div.first.in_group:hover .in_group .right {
+  background-image: none;
+}
+#subnavigation .first.in_group div.in_group:hover .right {
+  background-image: url(/images/application/navigation/right.png);
+}
+#subnavigation div.first.in_group:hover .in_group .top_left {
+  background-image: none;
+}
+#subnavigation .first.in_group div.in_group:hover .top_left {
+  background-image: url(/images/application/navigation/top_left.png);
+}
+#subnavigation div.first.in_group:hover .in_group .top_right {
+  background-image: none;
+}
+#subnavigation .first.in_group div.in_group:hover .top_right {
+  background-image: url(/images/application/navigation/top_right.png);
+}
+#subnavigation div.first.in_group:hover .in_group .bottom_left {
+  background-image: none;
+}
+#subnavigation .first.in_group div.in_group:hover .bottom_left {
+  background-image: url(/images/application/navigation/bottom_left.png);
+}
+#subnavigation div.first.in_group:hover .in_group .bottom_right {
+  background-image: none;
+}
+#subnavigation .first.in_group div.in_group:hover .bottom_right {
+  background-image: url(/images/application/navigation/bottom_right.png);
+}
+
+
+
+#subnavigation .active .bottom {
+  background-color: #DDEEFF;
+  background-image: url(/images/application/navigation/active/bottom.png);
+}
+#subnavigation .active .top {
+  background-image: url(/images/application/navigation/active/top.png);
+}
+#subnavigation .active .left {
+  background-image: url(/images/application/navigation/active/left.png);
+}
+#subnavigation .active .right {
+  background-image: url(/images/application/navigation/active/right.png);
+}
+#subnavigation .active .top_left {
+  background-image: url(/images/application/navigation/active/top_left.png);
+}
+#subnavigation .active .top_right {
+  background-image: url(/images/application/navigation/active/top_right.png);
+}
+#subnavigation .active .bottom_left {
+  background-image: url(/images/application/navigation/active/bottom_left.png);
+}
+#subnavigation .active .bottom_right {
+  background-image: url(/images/application/navigation/active/bottom_right.png);
+}
+
+
+
+
+#subnavigation .first.in_group {
+  position: relative;
+}
+#subnavigation .group {
+  display: none;
+  width: 180px;
+  position: absolute;
+  top: 0px;
+  left: 177px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #CCCCCC;
+  background-color: #FFFFFF;
+}
+#subnavigation div.first:hover .group {
+  display: block;
+}
+#subnavigation a {
+  display: block;
+  padding: 8px;
+}
+#subnavigation div.first.in_group:hover a {
+  padding-right: 7px;
+}

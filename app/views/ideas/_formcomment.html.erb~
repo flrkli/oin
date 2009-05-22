@@ -1,0 +1,12 @@
+<% form_for(@new_comment) do |f| %>
+  
+	<b>Kommentar</b><br />
+	<%= f.text_area :comment, :size => "12x6" %><br>
+	<%= f.error_message_on :comment %>
+	<b>Rating</b><br />
+	<%= f.text_field :rating, :size => "10" %>
+	<%= f.error_message_on :rating %>
+	<p>
+    <%= f.submit "Neuer Kommentar" %>
+  </p>
+<% end %>

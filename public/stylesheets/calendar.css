@@ -1,0 +1,43 @@
+.calendar th, .calendar td {
+  width: 40px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.calendar th, .calendar td * {
+  text-align: center;
+}
+.calendar td {
+  padding: 0px;
+  border-top-style: solid;
+  border-left-style: solid;
+  border-width: 1px;
+  border-color: #FFFFFF;
+}
+.calendar a {
+  color: #333333;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: block;
+}
+.calendar a:hover {
+  color: #FFFFFF;
+  background-color: #0099CC;
+}
+.calendar .active_day {
+  color: #FFFFFF;
+  background-color: #0099CC;
+}
+.calendar .today {
+  background-color: #CCCCCC;
+}
+.calendar .weekend {
+  background-color: #EEEEEE;
+}
+.calendar_popup {
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  margin-left: -155px; /* calendar width is 290px */
+  padding: 10px;
+  background-color: #FFFFFF;
+}

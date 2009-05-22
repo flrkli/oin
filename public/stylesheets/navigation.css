@@ -1,0 +1,223 @@
+#navigation {
+  clear: both;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+
+
+#navigation * {
+  color: #333333;
+}
+
+
+
+
+#navigation .link {
+  padding: 2px;
+  float: left;
+}
+#navigation .in_group {
+  float: none;
+}
+#navigation .first {
+  float: left;
+}
+
+
+
+
+#navigation div.link:hover .bottom {
+  background-color: #FFFFFF;
+  background-image: url(/images/application/navigation/bottom.png);
+}
+#navigation div.first.in_group:hover .bottom {
+  background-image: url(/images/application/navigation/in_group/bottom.png);
+}
+#navigation .link .top {
+  background-color: transparent;
+  background-image: none;
+}
+#navigation div.link:hover .top {
+  background-image: url(/images/application/navigation/top.png);
+}
+#navigation div.link:hover .left {
+  background-image: url(/images/application/navigation/left.png);
+}
+#navigation div.link:hover .right {
+  background-image: url(/images/application/navigation/right.png);
+}
+#navigation .link .top_left {
+  background-image: none;
+}
+#navigation div.link:hover .top_left {
+  background-image: url(/images/application/navigation/top_left.png);
+}
+#navigation div.first:hover .top_left {
+  background-image: url(/images/application/navigation/first/top_left.png);
+}
+#navigation .link .top_right {
+  background-image: none;
+}
+#navigation div.link:hover .top_right {
+  background-image: url(/images/application/navigation/top_right.png);
+}
+#navigation .link .bottom_left {
+  background-image: none;
+}
+#navigation div.link:hover .bottom_left {
+  background-image: url(/images/application/navigation/bottom_left.png);
+}
+#navigation div.first.in_group:hover .bottom_left {
+  background-image: none;
+}
+#navigation .link .bottom_right {
+  background-image: none;
+}
+#navigation div.link:hover .bottom_right {
+  background-image: url(/images/application/navigation/bottom_right.png);
+}
+#navigation div.first.in_group:hover .bottom_right {
+  background-image: none;
+}
+
+
+
+
+#navigation .active .bottom {
+  background-color: #DDEEFF;
+  background-image: url(/images/application/navigation/active/bottom.png);
+}
+#navigation .active .top {
+  background-image: url(/images/application/navigation/active/top.png);
+}
+#navigation .active .left {
+  background-image: url(/images/application/navigation/active/left.png);
+}
+#navigation .active .right {
+  background-image: url(/images/application/navigation/active/right.png);
+}
+#navigation .active .top_left {
+  background-image: url(/images/application/navigation/active/top_left.png);
+}
+#navigation .active .top_right {
+  background-image: url(/images/application/navigation/active/top_right.png);
+}
+#navigation .active .bottom_left {
+  background-image: url(/images/application/navigation/active/bottom_left.png);
+}
+#navigation .active .bottom_right {
+  background-image: url(/images/application/navigation/active/bottom_right.png);
+}
+
+
+
+
+#navigation div.first.in_group:hover .in_group .bottom {
+  background-color: transparent;
+  background-image: none;
+}
+#navigation div.first.in_group:hover .in_group .top {
+  background-image: none;
+}
+#navigation div.first.in_group:hover .in_group .left {
+  background-image: none;
+}
+#navigation div.first.in_group:hover .in_group .right {
+  background-image: none;
+}
+#navigation div.first.in_group:hover .in_group .top_left {
+  background-image: none;
+}
+#navigation div.first.in_group:hover .in_group .top_right {
+  background-image: none;
+}
+#navigation div.first.in_group:hover .in_group .bottom_left {
+  background-image: none;
+}
+#navigation div.first.in_group:hover .in_group .bottom_right {
+  background-image: none;
+}
+
+
+
+
+#navigation div.first.in_group:hover .active .bottom {
+  background-color: #DDEEFF;
+  background-image: url(/images/application/navigation/active/bottom.png);
+}
+#navigation div.first.in_group:hover .active .top {
+  background-image: url(/images/application/navigation/active/top.png);
+}
+#navigation div.first.in_group:hover .active .left {
+  background-image: url(/images/application/navigation/active/left.png);
+}
+#navigation div.first.in_group:hover .active .right {
+  background-image: url(/images/application/navigation/active/right.png);
+}
+#navigation div.first.in_group:hover .active .top_left {
+  background-image: url(/images/application/navigation/active/top_left.png);
+}
+#navigation div.first.in_group:hover .active .top_right {
+  background-image: url(/images/application/navigation/active/top_right.png);
+}
+#navigation div.first.in_group:hover .active .bottom_left {
+  background-image: url(/images/application/navigation/active/bottom_left.png);
+}
+#navigation div.first.in_group:hover .active .bottom_right {
+  background-image: url(/images/application/navigation/active/bottom_right.png);
+}
+
+
+
+
+#navigation .first.in_group div.in_group:hover .bottom {
+  background-color: #FFFFFF;
+  background-image: url(/images/application/navigation/bottom.png);
+}
+#navigation .first.in_group div.in_group:hover .top {
+  background-image: url(/images/application/navigation/top.png);
+}
+#navigation .first.in_group div.in_group:hover .left {
+  background-image: url(/images/application/navigation/left.png);
+}
+#navigation .first.in_group div.in_group:hover .right {
+  background-image: url(/images/application/navigation/right.png);
+}
+#navigation .first.in_group div.in_group:hover .top_left {
+  background-image: url(/images/application/navigation/top_left.png);
+}
+#navigation .first.in_group div.in_group:hover .top_right {
+  background-image: url(/images/application/navigation/top_right.png);
+}
+#navigation .first.in_group div.in_group:hover .bottom_left {
+  background-image: url(/images/application/navigation/bottom_left.png);
+}
+#navigation .first.in_group div.in_group:hover .bottom_right {
+  background-image: url(/images/application/navigation/bottom_right.png);
+}
+
+
+
+
+#navigation .group {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #CCCCCC;
+  background-color: #FFFFFF;
+}
+#navigation div.first:hover .group {
+  display: block;
+}
+#navigation a {
+  display: block;
+  padding: 8px;
+}
+#navigation div.first.in_group:hover a {
+  padding-bottom: 7px;
+}

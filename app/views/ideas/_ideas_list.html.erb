@@ -1,0 +1,30 @@
+<!-- list of ideas -->
+
+<h2><%= list_title %></h2>
+<br />
+
+
+
+
+<div class = "border">
+<table class = "shading">
+  <tr>
+		<th><%= link_to "Titel", {:controller => "ideas", :action => "show_all", :title => "Nach Titel sortiert", :order => "title", :direction => "ASC", :condition => @condition, :offset => 0, :limit => 30} %></th>
+		<th>Kategorie</th>
+		<th><%= link_to "Aufrufe", {:controller => "ideas",:action => "show_all", :title => "Nach Aufrufe sortiert", :order => "views", :direction => "DESC", :condition => @condition, :offset => 0, :limit => 30} %></th>
+		<th><%= link_to "Rating", {:controller => "ideas",:action => "show_all", :title => "Nach Rating sortiert", :order => "rating", :direction => "DESC", :condition => @condition, :offset => 0, :limit => 30} %></th>
+		<th><%= link_to "Erstellt am", {:controller => "ideas",:action => "show_all", :title => "Nach Datum sortiert", :order => "created_at", :direction => "DESC", :condition => @condition, :offset => 0, :limit => 30} %></th>
+  </tr>
+
+<% ideas.each do |idea| %>
+  <tr>
+		<td><%= link_to idea.title, idea %></td>
+		<td><%= Category.find_by_id(idea.category_id).category %></td>
+    <td><%= idea.views %></td>
+		<td><%= idea.get_rating %></td>
+    <td><%= idea.created_at.strftime("%a, %d. %B %m, %H:%M") %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+

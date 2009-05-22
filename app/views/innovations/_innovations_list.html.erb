@@ -1,0 +1,23 @@
+
+<div class = "border">
+<table class = "shading">
+  <tr>
+		<th><%= link_to "Titel", {:controller => "innovations", :action => "show_all", :title => "Nach Titel sortiert", :order => "title", :direction => "ASC", :condition => @condition} %></th>
+		<th>Kategorie</th>
+		<th><%= link_to "Aufrufe", {:controller => "innovations",:action => "show_all", :title => "Nach Aufrufe sortiert", :order => "views", :direction => "DESC", :condition => @condition} %></th>
+		<th>Art der Innovation</th>
+		<th><%= link_to "Erstellt am", {:controller => "innovations",:action => "show_all", :title => "Nach Datum sortiert", :order => "created_at", :direction => "DESC", :condition => @condition} %></th>
+  </tr>
+
+<% innovations.each do |inno| %>
+  <tr>
+		<td><%= link_to inno.title, inno %></td>
+		<td><%= Category.find_by_id(inno.category_id).category %></td>
+    <td><%= inno.views %></td>
+		<td><%= inno.innovation_type %></td>
+    <td><%= inno.created_at.strftime("%a, %d. %B %m, %H:%M") %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+

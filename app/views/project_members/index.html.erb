@@ -1,0 +1,65 @@
+<div class="border">
+  
+  <div class="header">
+    Kollegen
+  </div>
+  
+  <% if @project_members.empty? %>
+    
+    <div class="content">
+      <% if @project %>
+        Sie haben in diesem Projekt keine Kollegen.
+      <% else %>
+        Sie haben keine Kollegen.
+      <% end %>
+    </div>
+    
+  <% else %>
+    
+    <% if @project %>
+      
+      <table>
+        <tr>
+          <th>Name</th>
+        </tr>
+        <% @project_members.each do |project_member| %>
+          <tr>
+            <td><%= User.find(project_member.user_id).login %></td>
+          </tr>
+        <% end %>
+      </table>
+      
+    <% else %>
+        
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Projekt</th>
+          <th></th>
+        </tr>
+        <% @project_members.each do |user, project_members| %>
+          <% project_members.each do |project_member| %>
+            <tr>
+              <td>
+                <% if project_member == project_members.first %>
+                  <%= user.login %>
+                <% end %>
+              </td>
+              <td><%= project_member.project.title %></td>
+              <td style="text-align: right;">
+                <% if !project_member.is_admin && project_member.project.project_members.find_by_user_id_and_is_admin(current_user.id, true) != nil %>
+                  <% form_for project_member, :url => workspace_project_members_path, :method => :update do |form| %>
+                    <%= submit_tag "Administrationsrechte verleihen" %>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+      
+    <% end%>
+    
+  <% end %>
+  
+</div>

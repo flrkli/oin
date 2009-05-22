@@ -1,0 +1,112 @@
+class ProjectsController < ApplicationController
+  
+  
+  
+  
+  before_filter :login_required, :except => [:index, :show]
+  before_filter :project_admin_required, :except => [:index, :show, :new, :create]
+  
+  
+  
+  
+  def create_subnavigation
+    params[:action] == "new" ? @subnavigation = [active_link_to_new_project] : @subnavigation = [link_to_new_project]
+    if logged_in? && @project && @is_project_admin
+      params[:action] == "edit" ? @subnavigation += [active_link_to_edit_project(@project)] : @subnavigation += [link_to_edit_project(@project)]
+      @subnavigation += [link_to_destroy_project(@project)]
+    end
+    if @project && !@is_project_member
+      @subnavigation += [link_to_create_project_member(@project)]
+    end    
+  end
+  
+  def create_path
+    if params[:name_prefix] == "workspace"
+      @path = [link_to_workspace]
+      if @project
+        @path += [workspace_link_to_project(@project)]
+      end
+    else
+      @path = [link_to_projects]
+      if @project
+        @path += [link_to_project(@project)]
+      end
+      case params[:action]
+      when "new"
+        @path += [link_to_new_project]
+      when "edit"
+        @path += [link_to_edit_project(@project)]
+      end
+    end
+  end
+  
+  
+  
+  
+  def index
+    @projects = Project.find(:all, :order => "id DESC")    
+    respond_to do |format|
+      format.html
+      format.xml {render :xml => @projects}
+    end
+  end
+  
+  def show
+    @project_member = ProjectMember.new
+    respond_to do |format|
+      format.html
+      format.xml {render :xml => @project}
+    end
+  end
+  
+  def new
+    @project = Project.new
+    respond_to do |format|
+      format.html
+      format.xml {render :xml => @project}
+    end
+  end
+  
+  def edit
+  end
+  
+  def create
+    @project = Project.new(params[:project])
+    @project.user_id = current_user.id
+    @project_member = ProjectMember.new(:user_id => current_user.id, :is_admin => true, :is_authorized => true)
+    @project.project_members << @project_member
+    respond_to do |format|
+      if @project.save
+        flash[:notice] = "Projekt erfolgreich erstellt."
+        format.html {redirect_to(@project)}
+        format.xml {render :xml => @project, :status => :created, :location => @project}
+      else
+        format.html {render :action => "new"}
+        format.xml {render :xml => @project.errors, :status => :unprocessable_entity}
+      end
+    end
+  end
+  
+  def update
+    respond_to do |format|
+      if @project.update_attributes(params[:project])
+        flash[:notice] = "Projekt erfolgreich aktualisiert."
+        format.html {redirect_to(@project)}
+        format.xml {head :ok}
+      else
+        format.html {render :action => "edit"}
+        format.xml {render :xml => @project.errors, :status => :unprocessable_entity}
+      end
+    end
+  end
+  
+  def destroy
+    @project.destroy
+    respond_to do |format|
+      flash[:notice] = "Projekt erfolgreich gelöscht."
+      format.html {redirect_to(projects_url)}
+      format.xml {head :ok}
+    end
+  end
+  
+end

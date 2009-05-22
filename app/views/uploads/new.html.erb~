@@ -1,0 +1,12 @@
+<h2>Dateien hochladen und löschen</h2><br />
+<br />
+Akzeptiert werden alle folgende Dateien: pdf, Word- und Textdateien und Bilder
+<br /><br />
+<% if @uploads != nil %>
+Bisher hochgeladene Dateien:<br />
+<%= render :partial => "shared/uploads_show" %>
+<% end %>
+
+<br />
+
+<%= render :partial => "shared/upload" %>

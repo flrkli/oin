@@ -1,0 +1,5 @@
+
+<% @uploads.each do |upload| %>
+  <%= link_to upload.public_filename %>
+<% end -%>
+

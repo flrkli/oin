@@ -1,0 +1,50 @@
+<h1>Listing user_details</h1>
+
+<table>
+  <tr>
+    <th>Gender</th>
+    <th>Title</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Profession</th>
+    <th>Expert in category</th>
+    <th>Expert description</th>
+    <th>Street</th>
+    <th>House number</th>
+    <th>City</th>
+    <th>Postal code</th>
+    <th>Country</th>
+    <th>Phone number</th>
+    <th>Mobile phone number</th>
+    <th>User</th>
+    <th>Level</th>
+  </tr>
+
+<% @user_details.each do |user_detail| %>
+  <tr>
+    <td><%=h user_detail.gender %></td>
+    <td><%=h user_detail.title %></td>
+    <td><%=h user_detail.first_name %></td>
+    <td><%=h user_detail.last_name %></td>
+    <td><%=h user_detail.profession %></td>
+    <td><%=h user_detail.expert_in_category_id %></td>
+    <td><%=h user_detail.expert_description %></td>
+    <td><%=h user_detail.street %></td>
+    <td><%=h user_detail.house_number %></td>
+    <td><%=h user_detail.city %></td>
+    <td><%=h user_detail.postal_code %></td>
+    <td><%=h user_detail.country %></td>
+    <td><%=h user_detail.phone_number %></td>
+    <td><%=h user_detail.mobile_phone_number %></td>
+    <td><%=h user_detail.user_id %></td>
+    <td><%=h user_detail.level %></td>
+    <td><%= link_to 'Show', user_detail %></td>
+    <td><%= link_to 'Edit', edit_user_detail_path(user_detail) %></td>
+    <td><%= link_to 'Destroy', user_detail, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New user_detail', new_user_detail_path %>

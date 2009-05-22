@@ -1,0 +1,41 @@
+<h2> <%= h @innovation.title %> </h2>
+von: <%= h User.find_by_id(@innovation.user_id).login %>
+
+<br />
+<br />
+
+<div class="border">
+  <div class="shading">
+    <%= @innovation.description %>
+  </div>
+</div>
+
+<br />
+<br />
+
+<div class="border">
+  <table class="shading">
+		<tr>
+			<td>Art der Innovation: </td>
+			<td><%= h @innovation.innovation_type %> </td>
+		</tr>
+		<tr>
+			<td>Kategorie: </td>
+			<td><%= h Category.find_by_id(@innovation.category_id).category %></td>	
+		</tr>
+		<tr>
+			<td>Uploads: </td>
+			<td>
+				<% if @uploads != nil %>
+					<% @uploads.each do |upload| %>
+  					<%= link_to upload.filename, upload.public_filename %><br />
+					<% end -%>
+				<% end %>
+		</tr>	
+		<tr>
+			<td>Aufrufe: </td>
+			<td><%= h @innovation.views %></td>
+		</tr>
+	</table>
+</div>
+

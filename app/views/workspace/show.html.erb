@@ -1,0 +1,19 @@
+<% if @is_authorized_project_member %>
+  <div class="border">
+    <div class="header">
+      Willkommen in Ihrem persönlichen Arbeitsbereich
+    </div>
+    <div class="content">
+      Sie haben 0 ungelesene Pinnwandeintr&auml;ge.
+      <p>Sie haben 0 neue Aufgaben.</p>
+      <p>Sie haben 0 ungelesene Nachrichten.</p>
+      <p>Sie haben 0 unbeantwortete Authorisierungsanfragen.</p>
+    </div>
+  </div>
+<% else %>
+  <div class="border">
+    <div class="content">
+      Ihre Authorisierungsanfrage wird bearbeitet.
+    </div>
+  </div>
+<% end %>

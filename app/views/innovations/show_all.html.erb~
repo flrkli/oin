@@ -1,0 +1,31 @@
+<% @categories.each do |cat| %>
+
+<%= link_to cat.category, {:controller => "innovations", :action => "show_all", :category => cat.id, :title => @title, :order => @order, :direction => @direction} %> &nbsp | &nbsp
+
+<% end %>
+
+<br />
+<br />
+
+<%= link_to "SaleInnovation", {:controller => "innovations", :action => "show_all", :inno => "SaleInnovation", :title => "Alle SaleInnovations", :order => @order, :direction => @direction} %> &nbsp | &nbsp
+<%= link_to "OpenInnovation", {:controller => "innovations", :action => "show_all", :inno => "OpenInnovation", :title => "Alle Openinnovations", :order => @order, :direction => @direction} %> &nbsp | &nbsp
+<%= link_to "SponsoringInnovation", {:controller => "innovations", :action => "show_all", :inno => "SponsoringInnovation", :title => "Alle SponsoringInnovations", :order => @order, :direction => @direction} %> &nbsp | &nbsp
+<%= link_to "BusinessInnovation", {:controller => "innovations", :action => "show_all", :inno => "BusinessInnovation", :title => "Alle BusinessInnovations", :order => @order, :direction => @direction} %>
+
+<br />
+<br />
+
+<div class="digg_pagination">
+	<%= will_paginate :id => true %>
+</div>
+
+<br>
+
+<%= render :partial => "innovations_list" %>
+
+<br />
+
+<div class="digg_pagination">
+	<%= will_paginate :id => true %>
+</div>
+

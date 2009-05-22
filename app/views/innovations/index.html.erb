@@ -1,0 +1,5 @@
+<h2>Neueste Innovationen</h2>
+
+<%= render :partial => "innovations_list" , :locals => {:innovations => @latest_innos}%>
+
+<%= link_to "Alle neusten Innovationen", {:controller => "innovations", :action => "show_all", :title => "Neuste Innovationen", :order => "created_at", :direction => "DESC"} %>  

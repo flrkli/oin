@@ -1,0 +1,81 @@
+<div class="border">
+  	<table class="shading">
+			<tr>
+				<td>Anrede</td>
+				<td><%= @user_detail.gender %>
+				</td>
+			</tr>
+			<tr>
+				<td>Titel</td>
+				<td><%= @user_detail.title %>
+				</td>
+			</tr>
+			<tr>
+				<td>Vorname</td>
+				<td><%= @user_detail.first_name %>
+				</td>
+			</tr>	
+			<tr>
+				<td>Nachname/Künstlername/Firma</td>
+				<td><%= @user_detail.last_name %>
+				</td>
+			</tr>
+			<tr>
+				<td>Straße / Hausnummer</td>
+				<td><%= @user_detail.street + " " + @user_detail.house_number unless @user_detail.street == nil || @user_detail.house_number == nil %>
+				</td>
+			</tr>
+			<tr>
+				<td>PLZ / Stadt</td>
+				<td><%= @user_detail.postal_code + " " + @user_detail.city unless @user_detail.postal_code == nil || @user_detail.city == nil %>
+				</td>
+			</tr>
+			<tr>
+				<td>Land</td>
+				<td><%= @user_detail.country %>			
+				</td>
+			</tr>
+			<tr>
+				<td>Telefonnummer</td>
+				<td><%= @user_detail.phone_number %>
+				</td>
+			</tr>
+			<tr>
+				<td>Mobilfunknummer</td>
+				<td><%= @user_detail.mobile_phone_number %>
+				</td>
+			</tr>
+			<tr>
+				<td>Geburtsdatum</td>
+				<td><%= @user_detail.birthday.strftime("%a, %d. %B %m") %>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<br />
+
+	<div class="border">
+  	<table class="shading">
+			<tr>
+				<td>Beruf/Ausbildung</td>
+				<td><%= @user_detail.profession %>
+				</td>
+			</tr>	
+			<tr>
+				<td>Branche/Ausbildungsplatz</td>
+				<td><%= @user_detail.branche %>
+				</td>
+			</tr>			
+			<tr>
+				<td>Experte für</td>
+				<td><%= Category.find_by_id(@user_detail.expert_in_category_id).category %>
+				</td>
+			</tr>
+			<tr>
+				<td>Fähigkeiten</td>
+				<td><%= @user_detail.expert_description %>
+				</td>
+			</tr>
+		</table>
+	</div>

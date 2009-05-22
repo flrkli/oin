@@ -1,0 +1,27 @@
+
+<p>| &nbsp
+<% @categories.each do |cat| %>
+
+<%= link_to cat.category, {:controller => "ideas", :action => "show_all", :category => cat.id, :title => @title, :order => @order, :direction => @direction, :condition => @condition, :offset => @offset, :limit => @limit, :page => 1} %> &nbsp | &nbsp
+
+<% end %>
+</p>
+
+
+
+<br />
+
+
+<div class="digg_pagination">
+	<%= will_paginate :id => true %>
+</div>
+
+<br />
+
+<%= render :partial => "ideas_list", :locals => {:ideas => @ideas, :list_title => @title} %>
+
+<br />
+
+<div class="digg_pagination">
+	<%= will_paginate :id => true %>
+</div>

@@ -1,0 +1,10 @@
+class IdeaComment < ActiveRecord::Base
+
+	belongs_to :idea
+	belongs_to :user
+
+	validates_presence_of :comment, :message => "Kommentarfeld nicht ausgefüllt"
+	# hier muss noch geprüft werden, dass nur Zahlen eingegeben werden
+	validates_inclusion_of :rating, :in => 0..5, :message => "Rating muss zwischen 0-5 sein" 
+
+end

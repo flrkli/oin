@@ -1,0 +1,8 @@
+Ihre Uploads:
+<br /><br />
+<% if @uploads != nil %>
+	<% @uploads.each do |upload| %>
+  	<%= link_to upload.filename, upload.public_filename %><br />
+	<% end -%>
+<% end %>
+

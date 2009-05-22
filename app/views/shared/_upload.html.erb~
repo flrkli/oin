@@ -1,0 +1,15 @@
+<%= error_messages_for :upload %>
+
+<% form_for([@form_type, @upload]) do |f| -%>
+  <p>
+    <label for="upload">Eine Datei hochladen:</label>
+    <%= f.file_field :uploaded_data %>
+  </p>
+	<br />
+	<p>
+    <%= f.submit 'Upload' %>
+  </p>
+	
+
+<% end -%>
+

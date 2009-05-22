@@ -1,0 +1,140 @@
+
+<% form_for :user, @user, :url => users_path do |f| %>
+<%# error_messages_for :object => [@user, @user_detail] %>	
+
+	<div class="border">
+  	<table class="shading">
+			<tr>
+				<td><label for="email">Email*</label></td>
+				<td><%= f.text_field :email %>
+						<%= f.error_message_on :email %>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="password">Passwort*</label></td>
+				<td><%= f.password_field :password %>
+						<%= f.error_message_on :password %>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="password_confirmation">Passwort wiederholen*</label></td>
+				<td><%= f.password_field :password_confirmation %>
+						<%= f.error_message_on :password_confirmation %>
+				</td>
+			</tr>					
+		</table>
+	</div>
+
+	<br />
+
+	<% fields_for @user_detail do |d| %> 
+
+	<div class="border">
+  	<table class="shading">
+			<tr>
+				<td><label for="gender">Anrede*</label></td>
+				<td><%= d.select :gender, ["Frau", "Herr", "Firma"], :prompt => true %>
+						<%= d.error_message_on :gender %>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="title">Titel</label></td>
+				<td><%= d.select :title, ["Dipl.-Ing.", "Dipl.-Kfm.", "Dipl.Vw.", "Dr.", "Dr.Dr.", "Dr.med.", "Dres.", "Ing.", "Mag.", "Prof.", "Prof.Dr.", "Prof.Dr.Dr."], :prompt => true, :include_blank => true %>
+						<%= d.error_message_on :title %>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="first_name">Vorname*</label></td>
+				<td><%= d.text_field :first_name %>
+						<%= d.error_message_on :first_name %>
+				</td>
+			</tr>	
+			<tr>
+				<td><label for="last_name">Nachname/Künstlername/Firma*</label></td>
+				<td><%= d.text_field :last_name %>
+						<%= d.error_message_on :last_name %>
+				</td>
+			</tr>
+			<tr>
+				<td>Nur Nachname anzeigen</td>
+				<td><%= check_box_tag :last_name_check %></td>
+			</tr>
+			<tr>
+				<td><label for="street">Straße / Hausnummer</label></td>
+				<td><%= d.text_field :street %><%= d.text_field :house_number, :size => 2 %>
+						<%= d.error_message_on :street %>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="postal_code">PLZ / Stadt</label></td>
+				<td><%= d.text_field :postal_code, :size => 5 %><%= d.text_field :city %>
+						<%= d.error_message_on :postal_code %>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="country">Land*</label></td>
+				<td><%= d.country_select(:country, ["United States", "Germany"]) %>
+						<%= d.error_message_on :country %>			
+				</td>
+			</tr>
+			<tr>
+				<td><label for="phone_number">Telefonnummer</label></td>
+				<td><%= d.text_field :phone_number %>
+						<%= d.error_message_on :phone_number %>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="mobile_phone_number">Mobilfunknummer</label></td>
+				<td><%= d.text_field :mobile_phone_number %>
+						<%= d.error_message_on :mobile_phone_number %>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="birthday">Geburtsdatum</label></td>
+				<td><%= d.date_select :birthday, :start_year => 1910, :end_year => 2002, :order => [:day, :month, :year], :include_blank => true, :default => {:day => "", :month => "", :year => ""} %>
+						<%= d.error_message_on :birthday %>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<br />
+
+	<div class="border">
+  	<table class="shading">
+			<tr>
+				<td><label for="profession">Beruf/Ausbildung*</label></td>
+				<td><%= d.text_field :profession %>
+						<%= d.error_message_on :profession %>
+				</td>
+			</tr>	
+			<tr>
+				<td><label for="branche">Branche/Ausbildungsplatz*</label></td>
+				<td><%= d.text_field :branche %>
+						<%= d.error_message_on :branche %>
+				</td>
+			</tr>			
+			<tr>
+				<td><label for="expert_in_category_id">Experte für*</label></td>
+				<td><%= d.select :expert_in_category_id, Category.find(:all).collect{ |cat| [cat.category, cat.id]}, :prompt => true %>
+						<%= d.error_message_on :expert_in_category_id %>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="expert_description">Fähigkeiten</label></td>
+				<td><%= d.text_area :expert_description, :size => "30x8" %>
+						<%= d.error_message_on :expert_description %>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<br />
+	AGBs bestätigen* <%= d.check_box :agbs %>
+	<br />
+	<%= d.error_message_on :agbs %>
+
+		<% end %>
+	<br />
+	<%= f.submit "Abschicken" %>	
+<% end -%>

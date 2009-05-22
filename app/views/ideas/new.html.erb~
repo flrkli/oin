@@ -1,0 +1,5 @@
+
+<%= render :partial => "form", :locals => {:submit_text => "Speichern"} %>
+  
+
+<%= link_to 'Back', ideas_path %>

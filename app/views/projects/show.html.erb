@@ -1,0 +1,36 @@
+<div class="border">
+  <table>
+    <tr>
+      <th colspan="2"><%= h @project.title %></th>
+    </tr>
+    <tr>
+      <td>Kurzbeschreibung</td>
+      <td><%= h @project.short_description %></td>
+    </tr>
+    <tr>
+      <td>Beschreibung</td>
+      <td><%= h @project.description %></td>
+    </tr>
+    <tr>
+      <td>Projektform</td>
+      <td>
+        <% if @project.is_open %>
+          Offen
+        <% else %>
+          Geschlossen
+        <% end %>
+      </td>
+    <tr>
+      <td>Ersteller</td>
+      <td><%= h @project.user.login %></td>
+    </tr>
+    <tr>
+      <td>Erstellungsdatum</td>
+      <td><%= h string_from_time(@project.created_at) %></td>
+    </tr>
+    <tr>
+      <td>Letzte Aktualisierung</td>
+      <td><%= h string_from_time(@project.updated_at) %></td>
+    </tr>
+  </table>
+</div>

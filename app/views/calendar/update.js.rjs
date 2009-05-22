@@ -1,0 +1,1 @@
+page.replace_html(params[:calendar_id], :partial => "calendar", :locals => {:active_day => params[:active_day].to_date})

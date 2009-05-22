@@ -1,0 +1,35 @@
+<div class="border">
+  <% if @projects.empty? %>
+    <div class="header">
+      Projekte
+    </div>
+    <div class="content">
+      Es wurden noch keine Projekte erstellt. <%= link_to "Seien Sie der Erste!", new_project_path %>
+    </div>
+  <% else %>
+    <table>
+      <tr>
+        <th>Titel</th>
+        <th>Kategorie</th>
+        <th>Kurzbeschreibung</th>
+        <th>Projektform</td>
+        <th></th>
+      </tr>
+      <% for project in @projects %>
+        <tr>
+          <td><%= h project.title %></td>
+          <td><%= h project.category %></td>
+          <td><%= h project.short_description %></td>
+          <td>
+            <% if project.is_open %>
+              Offen
+            <% else %>
+              Geschlossen
+            <% end %>
+          </td>
+          <td style="text-align: right;"><%= link_to "Details", project %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>

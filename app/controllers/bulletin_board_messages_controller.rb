@@ -1,0 +1,101 @@
+class BulletinBoardMessagesController < ApplicationController
+  
+  before_filter :login_required
+  before_filter :project_authorization_required
+  before_filter :bulletin_board_message_admin_required, :except => [:index, :new, :create]
+  
+  
+  
+  
+  def bulletin_board_message_admin_required
+    @bulletin_board_message = BulletinBoardMessage.find(params[:id])
+    if @bulletin_board_message.user != current_user
+      flash[:notice] = "Sie haben nicht die erforderlichen Rechte, um diese Seite aufzurufen."
+      redirect_back_or_default("/")
+    end
+  end
+  
+  
+  
+  
+  def create_subnavigation
+    params[:action] == "index" ? links = [active_link_to_workspace_project_bulletin_board_messages(@project)] : links =  [link_to_workspace_project_bulletin_board_messages(@project)]
+    params[:action] == "new" ? links += [active_link_to_new_workspace_project_bulletin_board_message(@project)] : links += [link_to_new_workspace_project_bulletin_board_message(@project)]
+    create_workspace_subnavigation(links)
+  end
+  
+  def create_path
+    @path = [link_to_workspace, link_to_workspace_project(@project), link_to_workspace_project_bulletin_board_messages(@project)]
+    case params[:action]
+    when "new"
+      @path += [link_to_new_workspace_project_bulletin_board_message(@project)]
+    when "edit"
+      @path += [link_to_edit_workspace_project_bulletin_board_message(@project)]
+    end
+  end
+  
+  
+  
+  
+  def index
+    @bulletin_board_messages = @project.bulletin_board_messages.find(:all, :order => "id DESC")
+    respond_to do |format|
+      format.html
+      format.xml {render :xml => @bulletin_board_messages}
+    end
+  end
+  
+  def new
+    @bulletin_board_message = BulletinBoardMessage.new
+    respond_to do |format|
+      format.html
+      format.xml {render :xml => @bulletin_board_message}
+    end
+  end
+  
+  def edit
+    @bulletin_board_message = BulletinBoardMessage.find(params[:id])
+  end
+  
+  def create
+    @bulletin_board_message = BulletinBoardMessage.new(params[:bulletin_board_message])
+    @bulletin_board_message.project_id = @project.id
+    @bulletin_board_message.user_id = current_user.id
+    respond_to do |format|
+      if @bulletin_board_message.save
+        flash[:notice] = 'Pinnwandeintrag erfolgreich erstellt.'
+        format.html {redirect_to workspace_project_bulletin_board_messages_path(@project)}
+        format.xml {render :xml => @bulletin_board_message, :status => :created, :location => @bulletin_board_message}
+      else
+        format.html {render :action => "new"}
+        format.xml {render :xml => @bulletin_board_message.errors, :status => :unprocessable_entity}
+      end
+    end
+  end
+  
+  def update
+    @bulletin_board_message = BulletinBoardMessage.find(params[:id])
+    @bulletin_board_message.project_id = @project.id
+    @bulletin_board_message.user_id = current_user.id
+    respond_to do |format|
+      if @bulletin_board_message.update_attributes(params[:bulletin_board_message])
+        flash[:notice] = 'Pinnwandeintrag erfolgreich aktualisiert.'
+        format.html {redirect_to workspace_project_bulletin_board_messages_path(@project)}
+        format.xml {head :ok}
+      else
+        format.html {render :action => "edit"}
+        format.xml {render :xml => @bulletin_board_message.errors, :status => :unprocessable_entity}
+      end
+    end
+  end
+  
+  def destroy
+    @bulletin_board_message = BulletinBoardMessage.find(params[:id])
+    @bulletin_board_message.destroy
+    respond_to do |format|
+      format.html {redirect_to workspace_project_bulletin_board_messages_path(@project)}
+      format.xml {head :ok}
+    end
+  end
+  
+end

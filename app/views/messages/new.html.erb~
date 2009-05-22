@@ -1,0 +1,27 @@
+<%= render :partial =>"navigation" %>
+
+<% form_for(@message, :html => { :multipart => true, :reply => @reply }) do |f| %>
+<%= hidden_field_tag :reply, @reply %>
+<div class="border">
+  <table class="shading">
+		<tr>
+			<td>Empfänger:</td>
+			<td><% if @recipient == nil %>
+					<%= text_field_tag (:recipient) %>
+					<% else %>
+					<%= User.find_by_id(@recipient).login %>
+					<% end %></td>
+		</tr>
+		<tr>
+			<td>Überschrift:</td>
+			<td><%= f.text_field :subject, :size => 40 %></td>
+		</tr>
+		<tr>
+			<td>Text:</td>
+			<td><%= f.text_area :body, :size => "40x20" %></td>
+		</tr>
+	</table>
+</div>
+
+<%= f.submit "Nachricht senden" %>
+<% end %>

@@ -1,0 +1,41 @@
+<div class="border">
+  <div class="header">
+    Persönliche Authorisierungsanfragen
+  </div>
+  <div class="content">
+    <% if @personal_authorization_requests.empty? %>
+      Es liegen zur Zeit keine persönlichen Authorisierungsanfragen vor.
+    <% else %>
+      <ul>
+        <% @personal_authorization_requests.each do |project_member| %>
+          <li><%= project_member.project.title %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>
+
+<div class="border">
+  
+  <% if @project %>
+    <div class="header">
+      Authorisierungsanfragen
+    </div>
+  <% else %>
+    <% form_remote_tag :url => {:controller => "project_members", :action => "update_project_members"} do %>
+      <% projects = [] %>
+      <% current_user.project_members.find_all_by_is_admin(true).each do |project_member| %>
+        <% projects += [project_member.project] %>
+      <% end %>
+      <table>
+        <tr>
+          <th style="vertical-align: middle;">Authorisierungsanfragen</th>
+          <th style="text-align: right;"><%= collection_select :project, :id, [ApplicationController::SelectOption.new("Alle Authorisierungsanfragen", 0)]+@authorized_projects, :id, :title %><%= submit_tag "Go" %></th>
+        </tr>
+      </table>
+    <% end %>
+  <% end %>
+  
+  <%= render :partial => "authorization", :locals => {:project_members => @authorization_requests, :id => "all_authorization_requests", :show => true} %>
+  
+</div>

@@ -1,0 +1,20 @@
+<% form_for [:workspace, @project, @bulletin_board_message] do |form| %>
+  <div class="border">
+    <div class="header">
+      <%= title %>
+    </div>
+    <table>
+      <tr>
+        <td>Titel</td>
+        <td><%= form.text_field :title %>
+      </tr>
+      <tr>
+        <td>Nachricht</td>
+        <td><%= form.text_area :message %></td>
+      </tr>
+    </table>
+    <div class="footer">
+      <%= form.submit caption %>
+    </div>
+  </div>
+<% end %>

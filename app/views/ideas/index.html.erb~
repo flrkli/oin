@@ -1,0 +1,37 @@
+<%= @out %>
+<!-- here you can choose between the different categories -->
+<p>| &nbsp
+<% @categories.each do |cat| %>
+<%= link_to cat.category, {:action => "index", :category => cat.id} %> &nbsp | &nbsp
+<% end %>
+</p>
+
+<br />
+<br />
+
+<!-- last added ideas -->
+
+<%= render :partial => "ideas_list", :locals => {:ideas => @ideas_last, :list_title => "Zuletzt hinzugefügte Ideen"} %>
+
+<p><%= link_to "Alle zuletzt hinzugefügte Ideen", {:action => "show_all", :title => "Zuletzt hinzugefügte Ideen", :order => "created_at", :direction => "DESC", :condition => "", :offset => 0, :limit => 30, :page => 1} %></p>
+
+<br />
+
+<!-- most viewed ideas -->
+
+<%= render :partial => "ideas_list", :locals => {:ideas => @ideas_viewed, :list_title => "Meist angeschaute Ideen"} %>
+
+<p><%= link_to "Alle meist angeschauten Ideen", {:action => "show_all", :title => "Meist angeschaute Ideen", :order => "views", :direction => "DESC", :condition => "", :offset => 0, :limit => 30, :page => 1} %></p>
+
+
+<br />
+
+<!-- best rated -->
+
+<%= render :partial => "ideas_list", :locals => {:ideas => @ideas_rated, :list_title => "Am besten bewertete Ideen"} %>
+
+<p><%= link_to "Alle zuletzt hinzugefügte Ideen", {:action => "show_all", :title => "Zuletzt hinzugefügte Ideen", :order => "rating", :direction => "DESC", :condition => "", :offset => 0, :limit => 30, :page => 1} %></p>
+
+
+
+

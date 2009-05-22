@@ -1,0 +1,4 @@
+params[:project][:id].to_i == 0 ? page.show("all_authorization_requests") : page.hide("all_authorization_requests")
+current_user.project_members.find_all_by_is_admin(true).each do |project_member|
+  params[:project][:id].to_i == project_member.project_id ? page.show("authorization_requests_for_project_#{project_member.project_id}") : page.hide("authorization_requests_for_project_#{project_member.project_id}")
+end  

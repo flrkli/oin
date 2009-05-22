@@ -1,0 +1,41 @@
+<%= error_messages_for :task %>
+<% form_for @target_url do |form| %>
+  <div class="border">
+    <div class="header">
+      <%= title %>
+    </div>
+    <table>
+      <% if @project %>
+        <tr>
+          <td>Sichtbarkeit</td>
+          <td><%= collection_select :task, :is_private, [ApplicationController::SelectOption.new("Privat", true), ApplicationController::SelectOption.new("Öffentlich", false)], :id, :title %>
+        </tr>
+      <% end %>
+      <tr>
+        <td>Titel</td>
+        <td><%= form.text_field :title %></td>
+      </tr>
+      <tr>
+        <td>Beschreibung</td>
+        <td><%= form.text_area :description %></td>
+      </tr>
+      <tr>
+        <td>Beginn</td>
+        <td><%= form.datetime_select :begins_at %> <%= link_to_function "&raquo;", update_page {|page| page.hide("ends_at_calendar"); page.show("begins_at_calendar")} %></td>
+      </tr>
+      <tr>
+        <td>Ende</td>
+        <td><%= form.datetime_select :ends_at %> <%= link_to_function "&raquo;", update_page {|page| page.hide("begins_at_calendar"); page.show("ends_at_calendar")} %></td>
+      </tr>
+    </table>
+    <div class="footer">
+      <%= form.submit caption %>
+    </div>
+  </div>
+<% end %>
+<div id="begins_at_calendar" class="calendar_popup" style="display: none;">
+  <%= render :partial => "calendar/calendar", :locals => {:calendar_id => "begins_at_calendar", :active_day => Time.now.to_date, :render_cancel_button => true} %>
+</div>
+<div id="ends_at_calendar" class="calendar_popup" style="display: none;">
+  <%= render :partial => "calendar/calendar", :locals => {:calendar_id => "ends_at_calendar", :active_day => 1.hour.from_now.to_date, :render_cancel_button => true} %>
+</div>

@@ -1,0 +1,66 @@
+<h2> <%= @idea.title %> </h2>
+von: <%= User.find_by_id(@idea.user_id).login %>
+
+<br />
+<br />
+
+<div class="border">
+  <div class="shading">
+    <%= @idea.description %>
+  </div>
+</div>
+
+<br />
+<br />
+
+<div class="border">
+  <table class="shading">
+		<tr>
+			<td>Kategorie: </td>
+			<td><%= @category.category %></td>		
+		<tr>
+			<td>Aufrufe: </td>
+			<td><%= @idea.views %></td>
+		</tr>
+		<tr>
+			<td>Durchschnittliches Rating: </td>
+			<td><%= @rating %> </td>
+		</tr>
+		<tr>
+			<td>Dateien: </td>
+			<td>
+				<% if @uploads != nil %>
+				<%= render :partial => "shared/uploads_show" %>
+				<% end %>
+			</td>
+		</tr>		
+	</table>
+</div>
+
+
+<br />
+<br />
+
+
+<div class="border">
+  <table class="shading">
+		<tr>
+			<td>Neuer Kommentar: </td>
+			<td><%= render :partial => "form_comment" %></td>		
+		<tr>
+			<td>Alle Kommentare </td>
+			<td>
+				<% @idea_comments.each do |comment| %>
+					<div class = "border"><table class = "shading">
+						<tr><th><%=  comment.rating %></b> Sterne von <%=  comment.user.login %></th>
+						<tr><td><%=  comment.comment %></td></tr> 
+					</table></div>
+					<br />
+				<%end%>
+				
+			</td>
+		</tr>
+	</table>
+</div>
+
+<%= link_to 'Back', ideas_path %>

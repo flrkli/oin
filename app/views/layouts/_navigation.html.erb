@@ -1,0 +1,54 @@
+<% create_navigation_links(navigation, links) %>
+
+<div id=<%= navigation %> class="top">
+  <div class="top_left">
+    <div class="top_right">
+      <div class="bottom_left">
+        <div class="bottom_right">
+          
+          <% @links.each do |link| %>
+            
+            <% html_class = link.html_options.delete(:class) %>
+            
+            <div class="<%= html_class %>">
+              <div class="bottom">
+                <div class="top">
+                  <div class="left">
+                    <div class="right">                      
+                      <div class="top_left">
+                        <div class="top_right">
+                          <div class="bottom_left">
+                            <div class="bottom_right">
+                              <%= link_to link.title, link.url, link.html_options %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <% if html_class == "first link in_group" || html_class == "first active link in_group" %>
+                <div class="group">
+              <% end %>
+              
+              <% if html_class == "last link in_group" || html_class == "last active link in_group" %>
+                  </div>
+                </div>
+              <% end %>
+            
+            <% if html_class != "first link in_group" && html_class != "first active link in_group" %>  
+              </div>
+            <% end %>
+            
+          <% end %>
+          
+          <div style="clear: both;">
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

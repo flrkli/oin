@@ -1,0 +1,33 @@
+<% if @message_count != 0 %>
+Sie haben <%= @message_count %> ungelesene Nachrichten in ihrem <%= link_to "Postfach", {:controller => "messages", :action => "box", :type => :inbox} %>
+<br />
+<br />
+<% end %>
+
+
+<!-- users ideas -->
+
+
+<%= render :partial => "ideas/ideas_list", :locals => {:ideas => @ideas, :list_title => "Eigene Ideen"} %>
+
+<p><%= link_to @user + "'s Ideen", {:controller => "ideas", :action => "show_all", :title => @user + "'s Ideen", :order => "created_at", :direction => "DESC", :condition => {:user_id => @user_id}, :offset => 0, :limit => 30} %></p>
+
+<br />
+<br />
+
+<!-- users projects -->
+
+<h2>Eigene Projekte</h2><br />
+
+<%= render :partial => "projects/projects_list" %>
+
+<br />
+<br />
+
+
+<!-- users innovations -->
+
+<h2>Eigene Innovationen</h2><br />
+<%= render :partial => "innovations/innovations_list" , :locals => {:innovations => @innovations}%>
+<p><%= link_to @user + "'s Innovationen", {:controller => "innovations", :action => "show_all", :title => @user + "'s Innovationen", :order => "created_at", :direction => "DESC", :user_id => @user_id} %></p>
+
