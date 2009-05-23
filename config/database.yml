@@ -11,11 +11,11 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: oin
+  database: db_1_6131
   pool: 5
-  username: postgres
-  password: oin
-  host: localhost
+  username: user_6131
+  password: 6da-k7mc
+  host: 10.251.111.225
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -38,15 +38,17 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: oin_post_test
+  database: db_1_6131
   pool: 5
-  username: oin_post
-  password:
+  username: user_6131
+  password: 6da-k7mc
+  host: 10.251.111.225
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: oin_post_production
+  database: db_1_6131
   pool: 5
-  username: oin_post
-  password:
+  username: user_6131
+  password: 6da-k7mc
+  host: 10.251.111.225
